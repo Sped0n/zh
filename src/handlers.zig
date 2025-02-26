@@ -144,8 +144,8 @@ pub fn execHandler(
     stdout: *Writer,
     stderr: *Writer,
 ) !std.process.Child.Term {
-    const stdout_is_default = stdout.is_default();
-    const stderr_is_default = stderr.is_default();
+    const stdout_is_default = stdout.isDefault();
+    const stderr_is_default = stderr.isDefault();
 
     var child = std.process.Child.init(argv, allocator);
 

@@ -185,29 +185,45 @@ pub fn redirectParse(
 ) ![]const []const u8 {
     if (!(raw_argv.len >= 3)) return error.ParseError;
 
-    if (std.mem.eql(u8, raw_argv[raw_argv.len - 2], ">") or std.mem.eql(u8, raw_argv[raw_argv.len - 2], "1>")) {
-        if (stdout.to_file(raw_argv[raw_argv.len - 1], false)) {
+    if (std.mem.eql(
+        u8,
+        raw_argv[raw_argv.len - 2],
+        ">",
+    ) or std.mem.eql(
+        u8,
+        raw_argv[raw_argv.len - 2],
+        "1>",
+    )) {
+        if (stdout.toFile(raw_argv[raw_argv.len - 1], false)) {
             return raw_argv[0 .. raw_argv.len - 2];
         } else {
             try stderr.print("zh: redirect failed\n", .{});
             return error.RedirectError;
         }
     } else if (std.mem.eql(u8, raw_argv[raw_argv.len - 2], "2>")) {
-        if (stderr.to_file(raw_argv[raw_argv.len - 1], false)) {
+        if (stderr.toFile(raw_argv[raw_argv.len - 1], false)) {
             return raw_argv[0 .. raw_argv.len - 2];
         } else {
             try stderr.print("zh: redirect failed\n", .{});
             return error.RedirectError;
         }
-    } else if (std.mem.eql(u8, raw_argv[raw_argv.len - 2], ">>") or std.mem.eql(u8, raw_argv[raw_argv.len - 2], "1>>")) {
-        if (stdout.to_file(raw_argv[raw_argv.len - 1], true)) {
+    } else if (std.mem.eql(
+        u8,
+        raw_argv[raw_argv.len - 2],
+        ">>",
+    ) or std.mem.eql(
+        u8,
+        raw_argv[raw_argv.len - 2],
+        "1>>",
+    )) {
+        if (stdout.toFile(raw_argv[raw_argv.len - 1], true)) {
             return raw_argv[0 .. raw_argv.len - 2];
         } else {
             try stderr.print("zh: redirect failed\n", .{});
             return error.RedirectError;
         }
     } else if (std.mem.eql(u8, raw_argv[raw_argv.len - 2], "2>>")) {
-        if (stderr.to_file(raw_argv[raw_argv.len - 1], true)) {
+        if (stderr.toFile(raw_argv[raw_argv.len - 1], true)) {
             return raw_argv[0 .. raw_argv.len - 2];
         } else {
             try stderr.print("zh: redirect failed\n", .{});

@@ -44,8 +44,8 @@ pub fn main() !u8 {
 
     while (true) {
         // Writer reset
-        _ = stdout.to_default();
-        _ = stderr.to_default();
+        _ = stdout.toDefault();
+        _ = stderr.toDefault();
 
         // Prompt
         try stdout.writer.print("$ ", .{});

@@ -22,7 +22,7 @@ pub fn deinit(self: *Self) void {
     }
 }
 
-pub fn to_default(self: *Self) bool {
+pub fn toDefault(self: *Self) bool {
     if (self.file) |f| {
         f.close();
         self.file = null;
@@ -34,7 +34,7 @@ pub fn to_default(self: *Self) bool {
     }
 }
 
-pub fn to_file(self: *Self, path: []const u8, try_append: bool) bool {
+pub fn toFile(self: *Self, path: []const u8, try_append: bool) bool {
     if (self.file) |f| {
         f.close();
         self.file = null;
@@ -86,7 +86,7 @@ pub fn to_file(self: *Self, path: []const u8, try_append: bool) bool {
     return true;
 }
 
-pub fn is_default(self: *Self) bool {
+pub fn isDefault(self: *Self) bool {
     return self.file == null;
 }
 
