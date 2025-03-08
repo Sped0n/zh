@@ -1,12 +1,12 @@
 const std = @import("std");
 
+const Exlut = @import("exlut.zig");
 const handlers = @import("handlers.zig");
 const Builtins = handlers.Builtins;
-const Exlut = @import("exlut.zig");
-const Parser = @import("parser.zig");
-const Writer = @import("writer.zig");
 const Input = @import("input.zig");
+const Parser = @import("parser.zig");
 const Trie = @import("trie.zig");
+const Writer = @import("writer.zig");
 
 test {
     comptime {

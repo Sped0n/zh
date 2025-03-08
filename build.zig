@@ -4,12 +4,15 @@ const std = @import("std");
 pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
-
-    const exe = b.addExecutable(.{
-        .name = "zh",
+    const root_module = b.addModule("zh", .{
         .root_source_file = b.path("src/main.zig"),
         .target = target,
         .optimize = optimize,
+    });
+
+    const exe = b.addExecutable(.{
+        .name = "zh",
+        .root_module = root_module,
     });
 
     b.installArtifact(exe);
@@ -17,9 +20,7 @@ pub fn build(b: *std.Build) void {
     // For zls build_on_save
     const exe_check = b.addExecutable(.{
         .name = "zh",
-        .root_source_file = b.path("src/main.zig"),
-        .target = target,
-        .optimize = optimize,
+        .root_module = root_module,
     });
 
     // Run

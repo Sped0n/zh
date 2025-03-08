@@ -113,7 +113,7 @@ fn dfs(
 }
 
 pub fn populate(self: *Self, exlut: *Exlut) !void {
-    inline for (@typeInfo(handler.Builtins).Enum.fields) |field| {
+    inline for (@typeInfo(handler.Builtins).@"enum".fields) |field| {
         try self.insert(field.name);
     }
     var exec_it = exlut.map.keyIterator();

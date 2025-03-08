@@ -97,7 +97,7 @@ fn scanDir(self: *Self, dir_path: []const u8) !void {
 fn scanPathDirs(self: *Self) !void {
     const path_value = try self.getPathEnvAlloc();
     defer self.allocator.free(path_value);
-    var dir_it = std.mem.split(u8, path_value, ":");
+    var dir_it = std.mem.splitScalar(u8, path_value, ':');
 
     while (dir_it.next()) |dir_path| {
         self.scanDir(dir_path) catch {

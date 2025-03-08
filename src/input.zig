@@ -3,8 +3,8 @@ const assert = std.debug.assert;
 const dprint = std.debug.print;
 
 const termios = @import("termios.zig");
-const Writer = @import("writer.zig");
 const Trie = @import("trie.zig");
+const Writer = @import("writer.zig");
 
 const ReadCharState = enum {
     Idle,
@@ -140,7 +140,7 @@ fn bkspHandler(self: *Self, stdout: *Writer) !void {
 
     if (self.cursor_pos == self.buffer.items.len) {
         // Remove character from buffer
-        _ = self.buffer.popOrNull();
+        _ = self.buffer.pop();
         self.cursor_pos -= 1;
 
         // ANSI backspace
